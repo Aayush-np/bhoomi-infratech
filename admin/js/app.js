@@ -141,7 +141,14 @@
         box.hidden = false;
         Auth.captchaWidget = window.turnstile.render(box, {
           sitekey: Api.captchaSiteKey,
-          theme: 'dark'
+          theme: 'dark',
+          'error-callback': function (code) {
+            /* surface the exact Turnstile error code so misconfigured
+               keys/domains are debuggable from the login screen */
+            UI.toast('CAPTCHA error ' + code + ' — check the Turnstile site key + allowed hostnames in the Cloudflare dashboard.', 'err');
+            console.error('[auth] Turnstile error code:', code,
+              '(110110 = invalid site key, 110200/110201 = hostname not allowed, 102xxx = key mismatch)');
+          }
         });
       } catch (err) {
         UI.toast(err.message, 'err');

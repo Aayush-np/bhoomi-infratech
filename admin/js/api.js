@@ -35,8 +35,12 @@
   var Api = {
     enabled: enabled,
     state: state,
-    /* Cloudflare Turnstile site key (optional login CAPTCHA) */
-    captchaSiteKey: typeof cfg.captchaSiteKey === 'string' ? cfg.captchaSiteKey.trim() : '',
+    /* Cloudflare Turnstile site key (optional login CAPTCHA).
+       Trim + strip any non-alphanumeric characters: paste errors with
+       invisible/whitespace chars make Turnstile reject the key (400020). */
+    captchaSiteKey: typeof cfg.captchaSiteKey === 'string'
+      ? cfg.captchaSiteKey.replace(/[^0-9A-Za-z]/g, '')
+      : '',
 
     /* ---------- auth ---------- */
     session(){

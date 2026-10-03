@@ -1,0 +1,17 @@
+# Internal build/setup/dev files must NOT be publicly downloadable.
+# The "!" forces the rule even when the file exists in the deploy bundle.
+# NOTE: config.js, css/, js/, img/, admin/, index.html, 404.html must stay public.
+
+/supabase/*        /404.html  404!
+/README-ADMIN.md   /404.html  404!
+/*.md              /404.html  404!
+/*.sql             /404.html  404!
+/*.map             /404.html  404!
+/.env              /404.html  404!
+/.env.*            /404.html  404!
+/.git/*            /404.html  404!
+/.git*             /404.html  404!
+/netlify.toml      /404.html  404!
+/package.json      /404.html  404!
+/package-lock.json /404.html  404!
+/node_modules/*    /404.html  404!

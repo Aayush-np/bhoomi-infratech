@@ -1,0 +1,31 @@
+# Netlify security headers — deployed alongside the static site.
+# https://docs.netlify.com/routing/headers/
+
+# ---------------------------------------------------------------------------
+# Public site + admin console
+#
+# CSP notes:
+#   script-src   : own files + Supabase SDK (jsdelivr) + Leaflet (unpkg)
+#                  + Cloudflare Turnstile (admin CAPTCHA). NO inline scripts.
+#   style-src    : own CSS + Google Fonts + Leaflet css; 'unsafe-inline' is
+#                  required because the design sets inline style attributes.
+#   img-src      : 'self', data:/blob: (previews), https: (CDN demo photos,
+#                  Supabase storage, OpenStreetMap tiles).
+#   connect-src  : Supabase REST/Realtime only.
+#   frame-src    : Cloudflare Turnstile widget.
+# ---------------------------------------------------------------------------
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# The admin console holds a Supabase session — never let it be framed
+# (click-jacking) and never cache it.
+/admin/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  X-Frame-Options: DENY
+  Cache-Control: no-store

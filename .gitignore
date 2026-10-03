@@ -1,0 +1,13 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Local servers / logs
+*.log
+
+# Nothing secret lives here by design — config.js contains only
+# public-by-design keys (Supabase anon + Turnstile site key) and MUST
+# be committed so the deployed site keeps working.

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bhoomi Infratech — construction, infrastructure and real estate company headquartered in Gaur-5, Rautahat, Madhesh Pradesh, Nepal.">
+  <title>Bhoomi Infratech — Gaur-5, Rautahat, Madhesh Pradesh, Nepal</title>
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CMS configuration + Supabase (optional backend — site degrades gracefully without it) -->
+  <script src="config.js"></script>
+</head>
+<body>
+
+  <!-- ====== PRELOADER ====== -->
+  <div id="loader" aria-hidden="true">
+    <div class="mono">Bhoomi Infratech · Site Survey</div>
+    <div class="pct" id="ldPct">0</div>
+    <div class="bar"><i id="ldBar"></i></div>
+    <div class="tag">POURING FOUNDATION ▮▮▮▯▯</div>
+  </div>
+
+  <!-- ====== GLOBAL OVERLAYS ====== -->
+  <div class="noise" aria-hidden="true"></div>
+  <div class="progress"><i id="progBar"></i></div>
+
+  <!-- ====== HEADER ====== -->
+  <header id="head">
+    <div class="head-in">
+      <a href="#top" class="logo">
+        <img class="mark" src="img/logo.png" alt="Bhoomi Infratech">
+        <span class="name">BHOOMI INFRATECH<small>CONSTRUCT · INFRA · REALTY</small></span>
+      </a>
+      <nav class="main" id="navMain" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#method">Method</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn solid magnetic">Start a Project <span class="arr">→</span></a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ====== MOBILE MENU ====== -->
+  <div class="mmenu" id="mmenu">
+    <a href="#about"    style="transition-delay:.08s">About    <span class="mono">01</span></a>
+    <a href="#services" style="transition-delay:.14s">Services <span class="mono">02</span></a>
+    <a href="#projects" style="transition-delay:.2s">Projects <span class="mono">03</span></a>
+    <a href="#method"   style="transition-delay:.26s">Method   <span class="mono">04</span></a>
+    <a href="#news"     style="transition-delay:.32s">News     <span class="mono">05</span></a>
+    <a href="#contact"  style="transition-delay:.38s">Contact  <span class="mono">06</span></a>
+  </div>
+
+  <main id="top">
+
+    <!-- ====== HERO ====== -->
+    <section class="hero dark-strip">
+      <span class="reg" style="top:110px;left:3vw">+</span>
+      <span class="reg" style="top:110px;right:3vw">+</span>
+      <span class="reg" style="bottom:130px;left:3vw">+</span>
+
+      <div class="wrap">
+        <div>
+          <div class="kick mono rv scramble-hero" data-text="CONSTRUCTION — INFRASTRUCTURE — REAL ESTATE">CONSTRUCTION — INFRASTRUCTURE — REAL ESTATE</div>
+          <h1>
+            <span class="lm"><span style="--d:.05s">WE LAY THE</span></span>
+            <span class="lm"><span style="--d:.15s">FOUNDATIONS</span></span>
+            <span class="lm"><span style="--d:.25s"><em class="amber hero-time-word" id="heroTimeWord" style="font-style:normal">TODAY.</em></span></span>
+          </h1>
+          <p class="sub rv" style="--d:.4s">Bhoomi Infratech is a full-spectrum construction, infrastructure and real-estate company — from the first blueprint to the final handover. We pour concrete, raise skylines and deliver spaces that outlast trends.</p>
+          <div class="cta-row rv" style="--d:.5s">
+            <a href="#projects" class="btn solid magnetic">View Project Portfolio <span class="arr">→</span></a>
+            <a href="#contact" class="btn magnetic">Request a Quote <span class="arr">→</span></a>
+          </div>
+          <div class="chips rv" style="--d:.6s">
+            <span>CLASS “A” CONTRACTOR</span><span>QUALITY CONTROL</span><span>45+ PROJECTS</span><span>SAFETY FIRST</span>
+          </div>
+        </div>
+
+        <div class="hero-visual rv" style="--d:.3s">
+          <div class="measure"><b>ELEV. +42.500 M — SITE 047</b></div>
+          <div class="hero-photo-stack" id="heroPhotoStack" aria-label="Bhoomi project photography">
+            <div class="hero-photo-card slot-0"><img src="https://picsum.photos/seed/bhoomi-construction-crane-site/900/1100" alt="Tower crane on Bhoomi construction site"></div>
+            <div class="hero-photo-card slot-1"><img src="https://picsum.photos/seed/bhoomi-blueprint-desk/900/1100" alt="Blueprint on a Bhoomi site desk"></div>
+            <div class="hero-photo-card slot-2"><img src="https://picsum.photos/seed/bhoomi-concrete-pour/900/1100" alt="Concrete pour at a Bhoomi project"></div>
+            <div class="hero-photo-card slot-3"><img src="https://picsum.photos/seed/bhoomi-steel-frame/900/1100" alt="Steel frame rising at a Bhoomi project"></div>
+            <div class="hero-photo-card slot-4"><img src="https://picsum.photos/seed/bhoomi-finished-residence/900/1100" alt="Completed Bhoomi residence"></div>
+          </div>
+          <div class="site-tag">SITE 047 — SKYLINE RESIDENCY<br>POUR #212 · LEVEL 14 · 06:40 NPT</div>
+          <div class="badge" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+              <text><textPath href="#circ">BUILD · DESIGN · DELIVER · BHOOMI INFRATECH · </textPath></text>
+            </svg>
+            <span class="core">↓</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-hint">SCROLL<i></i></div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="track">
+          <span>Civil Construction <b>◆</b> Infrastructure <b>◆</b> Real Estate <b>◆</b> Interiors &amp; Renovation <b>◆</b> Project Management <b>◆</b> Structural Design <b>◆</b>&nbsp;</span>
+          <span>Civil Construction <b>◆</b> Infrastructure <b>◆</b> Real Estate <b>◆</b> Interiors &amp; Renovation <b>◆</b> Project Management <b>◆</b> Structural Design <b>◆</b>&nbsp;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STATS ====== -->
+    <section class="stats">
+      <div class="wrap">
+        <div class="stat rv"><span class="plus">[ FIG.01 ]</span><div class="num"><span data-count="10" data-suffix="+">0</span></div><div class="mono lbl">Years in operation</div></div>
+        <div class="stat rv" style="--d:.1s"><span class="plus">[ FIG.02 ]</span><div class="num"><span data-count="45" data-suffix="+">0</span></div><div class="mono lbl">Projects delivered</div></div>
+        <div class="stat rv" style="--d:.2s"><span class="plus">[ FIG.03 ]</span><div class="num"><span data-count="92000" data-suffix=" m²">0</span></div><div class="mono lbl">Built &amp; paved</div></div>
+        <div class="stat rv" style="--d:.3s"><span class="plus">[ FIG.04 ]</span><div class="num"><span data-count="120" data-suffix=" Cr+">0</span></div><div class="mono lbl">NPR value executed</div></div>
+      </div>
+    </section>
+
+    <!-- ====== ABOUT / COMPANY PROFILE ====== -->
+    <section id="about" class="paper sec-pad">
+      <div class="wrap about-grid">
+        <div class="about-sticky rv">
+          <div class="kicker mono lbl">( 01 — COMPANY PROFILE )</div>
+          <h2 class="sec-title">
+            <span class="lm"><span>GROUND</span></span>
+            <span class="lm"><span style="--d:.1s">TRUTH<span class="amber">.</span></span></span>
+          </h2>
+          <p>Fourteen years of dirt under our nails. Bhoomi Infratech builds the roads, towers, parks and homes that cities are made of — with one crew, one standard, and no shortcuts.</p>
+          <a href="#services" class="btn magnetic">Our Capabilities <span class="arr">→</span></a>
+        </div>
+
+        <div class="about-flow">
+          <p class="about-lede rv">Founded in 2016, Bhoomi Infratech has grown from a local civil contractor into a <b>multi-disciplinary build house</b> spanning construction, infrastructure, real estate and design — trusted by municipalities, enterprises and families across Madhesh Province.</p>
+
+          <div class="mv">
+            <article data-i="M" class="rv"><h3>Mission</h3><p>Deliver every project on time, on budget and above spec — while keeping every worker safe and every client informed at each milestone.</p></article>
+            <article data-i="V" class="rv" style="--d:.12s"><h3>Vision</h3><p>To be the region's most trusted name in infrastructure and real estate — building spaces that serve three generations, not three years.</p></article>
+          </div>
+
+          <div class="values rv">
+            <div class="value"><span class="idx">/ 01</span><h4>Safety First</h4><p>Zero-harm sites. Daily toolbox talks, full PPE discipline and independent safety audits on every active project.</p></div>
+            <div class="value"><span class="idx">/ 02</span><h4>On-Time, Every Time</h4><p>CPM-scheduled builds with weekly client progress reports — 92% of our projects have finished ahead of deadline.</p></div>
+            <div class="value"><span class="idx">/ 03</span><h4>Material Integrity</h4><p>Batch-tested concrete, certified steel and vendor-audited supplies. What's in the mix is on the record.</p></div>
+            <div class="value"><span class="idx">/ 04</span><h4>Transparent Dealings</h4><p>Itemised estimates, milestone-linked billing and clear-title real estate. No surprises after the signature.</p></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SERVICES ====== -->
+    <section id="services" class="services sec-pad dark-strip">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <div>
+            <div class="kicker mono">( 02 — SERVICES )</div>
+            <h2 class="sec-title">
+              <span class="lm"><span>SIX TRADES.</span></span>
+              <span class="lm"><span style="--d:.1s">ONE ROOF<span class="amber">.</span></span></span>
+            </h2>
+          </div>
+          <p class="sec-note">From soil testing to handover keys — every discipline under one roof, one contract, one accountable team.</p>
+        </div>
+
+        <div class="svc-list" id="svcList">
+          <div class="svc rv" tabindex="0" role="button" aria-label="View Civil Construction details" data-img="https://picsum.photos/seed/bhoomi-civil-construction-tower/620/430">
+            <span class="idx">/ 01</span>
+            <div><h3>Civil Construction</h3><p>High-rise residential towers, commercial complexes and industrial sheds — RCC frame work executed to IS-code precision, from raft foundation to parapet.</p>
+            <div class="tags"><span>COMMERCIAL</span><span>RESIDENTIAL</span><span>INDUSTRIAL</span></div></div>
+            <span class="go">→</span>
+          </div>
+          <div class="svc rv" tabindex="0" role="button" aria-label="View Infrastructure Development details" data-img="https://picsum.photos/seed/bhoomi-highway-bridge-infra/620/430">
+            <span class="idx">/ 02</span>
+            <div><h3>Infrastructure Development</h3><p>Roads, flyovers, storm-water drains and water-supply networks built for municipalities and state agencies — engineered for decades, not deadlines.</p>
+            <div class="tags"><span>ROADS</span><span>BRIDGES</span><span>UTILITIES</span></div></div>
+            <span class="go">→</span>
+          </div>
+          <div class="svc rv" tabindex="0" role="button" aria-label="View Real Estate Development details" data-img="https://picsum.photos/seed/bhoomi-realty-township/620/430">
+            <span class="idx">/ 03</span>
+            <div><h3>Real Estate Development</h3><p>Clear-title plotted developments, apartment complexes and villa townships — transparent pricing and honest construction updates.</p>
+            <div class="tags"><span>PLOTS</span><span>APARTMENTS</span><span>VILLAS</span></div></div>
+            <span class="go">→</span>
+          </div>
+          <div class="svc rv" tabindex="0" role="button" aria-label="View Interiors and Renovation details" data-img="https://picsum.photos/seed/bhoomi-interior-fitout/620/430">
+            <span class="idx">/ 04</span>
+            <div><h3>Interiors &amp; Renovation</h3><p>Turnkey interior fit-outs, structural retrofits and façade upgrades for homes, offices and retail — designed, executed and styled by our in-house team.</p>
+            <div class="tags"><span>TURNKEY</span><span>RETROFIT</span><span>FAÇADE</span></div></div>
+            <span class="go">→</span>
+          </div>
+          <div class="svc rv" tabindex="0" role="button" aria-label="View Project Management details" data-img="https://picsum.photos/seed/bhoomi-site-management/620/430">
+            <span class="idx">/ 05</span>
+            <div><h3>Project Management (PMC)</h3><p>Planning, estimation, tendering and on-site supervision for third-party builds. We run your project like our own — schedules, quality and cost, controlled.</p>
+            <div class="tags"><span>PLANNING</span><span>QA / QC</span><span>SUPERVISION</span></div></div>
+            <span class="go">→</span>
+          </div>
+          <div class="svc rv" tabindex="0" role="button" aria-label="View Architecture and Structural Design details" data-img="https://picsum.photos/seed/bhoomi-architect-design-studio/620/430">
+            <span class="idx">/ 06</span>
+            <div><h3>Architecture &amp; Structural Design</h3><p>Concept drawings, 3D visualisations, structural detailing and statutory approvals — the full paper trail, handled before a single shovel moves.</p>
+            <div class="tags"><span>3D DESIGN</span><span>STRUCTURAL</span><span>APPROVALS</span></div></div>
+            <span class="go">→</span>
+          </div>
+        </div>
+      </div>
+      <div class="svc-preview" id="svcPreview" aria-hidden="true"><img src="" alt=""></div>
+      <div class="svc-modal" id="svcModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="svcModalTitle">
+        <div class="svc-modal-card">
+          <button class="svc-modal-close" id="svcModalClose" type="button" aria-label="Close service details">×</button>
+          <div class="svc-modal-image"><img id="svcModalImg" src="" alt=""></div>
+          <div class="svc-modal-copy">
+            <span class="mono" id="svcModalIndex"></span>
+            <h3 id="svcModalTitle"></h3>
+            <p id="svcModalDesc"></p>
+            <div class="svc-modal-meta">
+              <span class="mono">DELIVERY SCOPE</span>
+              <strong id="svcModalScope"></strong>
+            </div>
+            <div class="svc-modal-tags" id="svcModalTags"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJECT PORTFOLIO ====== -->
+    <section id="projects" class="paper sec-pad">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <div>
+            <div class="kicker mono lbl">( 03 — PROJECT PORTFOLIO )</div>
+            <h2 class="sec-title">
+              <span class="lm"><span>ON THE</span></span>
+              <span class="lm"><span style="--d:.1s">RECORD<span class="amber">.</span></span></span>
+            </h2>
+          </div>
+          <p class="sec-note">Featured builds, then the full field register. Filter by category — every project tracked from ground-breaking to handover.</p>
+        </div>
+
+        <!-- Featured — stacked cards -->
+        <div class="stack" id="stack">
+          <article class="stack-card project-card" tabindex="0" role="button" aria-label="View Skyline Residency details">
+            <div class="ph"><span class="status"><i></i>ONGOING — 68%</span><img src="https://picsum.photos/seed/bhoomi-skyline-residency-tower/980/760" alt="Skyline Residency tower under construction"></div>
+            <div class="body"><span class="wm">01</span>
+              <div class="meta">RESIDENTIAL · GAUR, RAUTAHAT · 2024–2027</div>
+              <h3>Skyline Residency</h3>
+              <p class="desc">Twin 14-floor towers, 168 residences, podium amenity deck and two basement parking levels. Currently pouring at Level 14, Tower A.</p>
+              <div class="spec">
+                <div><b>BUILT-UP AREA</b><span>2.4 Lakh Sq.Ft</span></div>
+                <div><b>CLIENT</b><span>Skyline Homes LLP</span></div>
+                <div><b>STRUCTURE</b><span>RCC M30 Frame</span></div>
+                <div><b>HANDOVER</b><span>Q3 2027</span></div>
+              </div>
+              <div class="pbar"><div class="lbl"><span>CONSTRUCTION PROGRESS</span><span>68%</span></div><div class="rail"><i style="--p:68%"></i></div></div>
+            </div>
+          </article>
+
+          <article class="stack-card project-card" tabindex="0" role="button" aria-label="View NH-64 Service Corridor details">
+            <div class="ph"><span class="status done"><i></i>COMPLETED — 2025</span><img src="https://picsum.photos/seed/bhoomi-flyover-service-road/980/760" alt="NH-64 service corridor and flyover"></div>
+            <div class="body"><span class="wm">02</span>
+              <div class="meta">INFRASTRUCTURE · MADHESH HIGHWAY AUTHORITY · 2023–2025</div>
+              <h3>NH-64 Service Corridor</h3>
+              <p class="desc">9.2 km of service road, one 6-lane flyover, storm-water drainage and pedestrian underpasses — delivered 3 weeks ahead of schedule.</p>
+              <div class="spec">
+                <div><b>LENGTH</b><span>9.2 KM</span></div>
+                <div><b>CLIENT</b><span>State Highway Authority</span></div>
+                <div><b>SCOPE</b><span>ROAD + FLYOVER</span></div>
+                <div><b>VALUE</b><span>NPR 184 CR</span></div>
+              </div>
+              <div class="pbar"><div class="lbl"><span>PROJECT STATUS</span><span>100%</span></div><div class="rail"><i style="--p:100%"></i></div></div>
+            </div>
+          </article>
+
+          <article class="stack-card project-card" tabindex="0" role="button" aria-label="View Bhoomi Trade Park details">
+            <div class="ph"><span class="status"><i></i>ONGOING — 41%</span><img src="https://picsum.photos/seed/bhoomi-trade-park-commercial/980/760" alt="Bhoomi Trade Park commercial campus"></div>
+            <div class="body"><span class="wm">03</span>
+              <div class="meta">COMMERCIAL · GAUR, RAUTAHAT · 2024–2028</div>
+              <h3>Bhoomi Trade Park</h3>
+              <p class="desc">A 5-acre commercial campus — four G+6 office blocks, retail arcade, and IGBC-green pre-certified services design. Block B structure complete.</p>
+              <div class="spec">
+                <div><b>SITE AREA</b><span>5.0 Acres</span></div>
+                <div><b>BUILT-UP AREA</b><span>4.1 Lakh Sq.Ft</span></div>
+                <div><b>UNITS</b><span>4 Blocks · 96 Units</span></div>
+                <div><b>HANDOVER</b><span>Q2 2028</span></div>
+              </div>
+              <div class="pbar"><div class="lbl"><span>CONSTRUCTION PROGRESS</span><span>41%</span></div><div class="rail"><i style="--p:41%"></i></div></div>
+            </div>
+          </article>
+
+          <article class="stack-card project-card" tabindex="0" role="button" aria-label="View Verdant Villas Phase I details">
+            <div class="ph"><span class="status done"><i></i>COMPLETED — 2023</span><img src="https://picsum.photos/seed/bhoomi-verdant-villas-township/980/760" alt="Verdant Villas township"></div>
+            <div class="body"><span class="wm">04</span>
+              <div class="meta">REAL ESTATE · GAUR, RAUTAHAT · 2021–2023</div>
+              <h3>Verdant Villas — Phase I</h3>
+              <p class="desc">48 villa plots with clubhouse, landscaped spine and rain-water harvesting. Sold out within eight months of launch; fully handed over.</p>
+              <div class="spec">
+                <div><b>PLOTS</b><span>48 Villas</span></div>
+                <div><b>AMENITIES</b><span>Club + Park</span></div>
+                <div><b>REGISTRATION</b><span>NEP/RAU/2021/0914</span></div>
+                <div><b>OCCUPANCY</b><span>100% Sold</span></div>
+              </div>
+              <div class="pbar"><div class="lbl"><span>PROJECT STATUS</span><span>100%</span></div><div class="rail"><i style="--p:100%"></i></div></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Field register — filterable grid -->
+        <h3 class="disp rv" style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:26px">MORE FROM THE FIELD <span class="amber">↓</span></h3>
+
+        <div class="filters rv" id="filters">
+          <button class="active" data-f="all">All Projects</button>
+          <button data-f="residential">Residential</button>
+          <button data-f="commercial">Commercial</button>
+          <button data-f="infrastructure">Infrastructure</button>
+          <button data-f="realestate">Real Estate</button>
+        </div>
+
+        <div class="pgrid" id="pgrid">
+          <article class="pcard rv project-card" tabindex="0" role="button" aria-label="View Emerald Heights details" data-cat="residential">
+            <div class="ph"><span class="st done">COMPLETED</span><img src="https://picsum.photos/seed/bhoomi-emerald-heights-apartments/640/460" alt="Emerald Heights apartments"></div>
+            <div class="in"><div class="cat">RESIDENTIAL</div><h3>Emerald Heights</h3>
+            <p style="font-size:.85rem;color:var(--mut-p)">84-unit apartment block with stilt amenities and rooftop garden.</p>
+            <div class="row"><span>GAUR</span><span>2024</span></div></div>
+          </article>
+          <article class="pcard rv project-card" tabindex="0" role="button" aria-label="View Bhoomi Trade Park details" data-cat="commercial" style="--d:.08s">
+            <div class="ph"><span class="st">ONGOING · 41%</span><img src="https://picsum.photos/seed/bhoomi-trade-park-block-b/640/460" alt="Bhoomi Trade Park block B"></div>
+            <div class="in"><div class="cat">COMMERCIAL</div><h3>Bhoomi Trade Park</h3>
+            <p style="font-size:.85rem;color:var(--mut-p)">5-acre G+6 commercial campus, IGBC pre-certified.</p>
+            <div class="row"><span>RAUTAHAT</span><span>2024–28</span></div></div>
+          </article>
+          <article class="pcard rv project-card" tabindex="0" role="button" aria-label="View NH-64 Service Corridor details" data-cat="infrastructure" style="--d:.16s">
+            <div class="ph"><span class="st done">COMPLETED</span><img src="https://picsum.photos/seed/bhoomi-nh64-flyover-pier/640/460" alt="NH-64 flyover"></div>
+            <div class="in"><div class="cat">INFRASTRUCTURE</div><h3>NH-64 Service Corridor</h3>
+            <p style="font-size:.85rem;color:var(--mut-p)">9.2 km road + 6-lane flyover for the highway authority.</p>
+            <div class="row"><span>MADHESH</span><span>2025</span></div></div>
+          </article>
+          <article class="pcard rv project-card" tabindex="0" role="button" aria-label="View Verdant Villas Phase II details" data-cat="realestate">
+            <div class="ph"><span class="st">ONGOING · 63%</span><img src="https://picsum.photos/seed/bhoomi-verdant-villas-phase2/640/460" alt="Verdant Villas phase 2"></div>
+            <div class="in"><div class="cat">REAL ESTATE</div><h3>Verdant Villas — Phase II</h3>
+            <p style="font-size:.85rem;color:var(--mut-p)">62 premium villa plots with central greens and clubhouse.</p>
+            <div class="row"><span>GAUR</span><span>2025–27</span></div></div>
+          </article>
+          <article class="pcard rv project-card" tabindex="0" role="button" aria-label="View Lakeview Waterworks details" data-cat="infrastructure" style="--d:.08s">
+            <div class="ph"><span class="st">ONGOING · 27%</span><img src="https://picsum.photos/seed/bhoomi-lakeview-waterworks/640/460" alt="Lakeview waterworks pipeline"></div>
+            <div class="in"><div class="cat">INFRASTRUCTURE</div><h3>Lakeview Waterworks</h3>
+            <p style="font-size:.85rem;color:var(--mut-p)">18 km piped water network and elevated reservoir for a municipality.</p>
+            <div class="row"><span>RAUTAHAT</span><span>2025–27</span></div></div>
+          </article>
+          <article class="pcard rv project-card" tabindex="0" role="button" aria-label="View The Foundry Lofts details" data-cat="commercial" style="--d:.16s">
+            <div class="ph"><span class="st done">COMPLETED</span><img src="https://picsum.photos/seed/bhoomi-foundry-lofts-office/640/460" alt="The Foundry Lofts"></div>
+            <div class="in"><div class="cat">COMMERCIAL</div><h3>The Foundry Lofts</h3>
+            <p style="font-size:.85rem;color:var(--mut-p)">Adaptive reuse of a 1980s foundry into boutique loft offices.</p>
+            <div class="row"><span>GAUR</span><span>2023</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="project-modal" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <div class="project-modal-card">
+        <button class="project-modal-close" id="projectModalClose" type="button" aria-label="Close project details">×</button>
+        <div class="project-modal-image"><img id="projectModalImg" src="" alt=""></div>
+        <div class="project-modal-copy">
+          <span class="mono" id="projectModalMeta"></span>
+          <span class="project-modal-status" id="projectModalStatus"></span>
+          <h3 id="projectModalTitle"></h3>
+          <p id="projectModalDesc"></p>
+          <div class="project-modal-progress">
+            <div class="project-modal-progress-label"><span id="projectModalProgressLabel">CONSTRUCTION PROGRESS</span><span id="projectModalProgressValue">0%</span></div>
+            <div class="project-modal-progress-rail"><i id="projectModalProgressBar"></i></div>
+          </div>
+          <div class="project-modal-specs" id="projectModalSpecs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== METHOD ====== -->
+    <section id="method" class="method sec-pad dark-strip">
+      <div class="wrap method-grid">
+        <div class="method-copy">
+          <div class="sec-head rv">
+            <div>
+              <div class="kicker mono">( 04 — METHOD )</div>
+              <h2 class="sec-title">
+                <span class="lm"><span>FROM SOIL TEST</span></span>
+                <span class="lm"><span style="--d:.1s">TO HANDOVER<span class="amber">.</span></span></span>
+              </h2>
+            </div>
+            <p class="sec-note">Five gates. Zero shortcuts. Every stage documented from first survey to final keys.</p>
+          </div>
+          <div class="method-steps">
+            <div class="method-progress" aria-hidden="true"><i></i></div>
+            <article class="method-step"><span class="method-node mono">01</span><div><h3>Survey &amp; Feasibility</h3><p>Topographic survey, soil testing, access study and budget feasibility before a single rupee is committed.</p><span class="mono">WEEK 0–2</span></div></article>
+            <article class="method-step"><span class="method-node mono">02</span><div><h3>Design &amp; Estimation</h3><p>Drawings, BOQ, material schedule and a milestone-based timeline signed by both sides.</p><span class="mono">WEEK 2–6</span></div></article>
+            <article class="method-step"><span class="method-node mono">03</span><div><h3>Approvals &amp; Mobilization</h3><p>Permits, site office setup, fencing, stores and equipment mobilization turn the site into a machine.</p><span class="mono">WEEK 6–8</span></div></article>
+            <article class="method-step"><span class="method-node mono">04</span><div><h3>Construction &amp; Quality Assurance</h3><p>Documented QA gates: cube tests, rebar checks, level surveys and weekly client reports.</p><span class="mono">ON SITE</span></div></article>
+            <article class="method-step"><span class="method-node mono">05</span><div><h3>Handover &amp; Support</h3><p>As-built drawings, completion documents and a 12-month defect-liability care window after handover.</p><span class="mono">DAY ZERO+</span></div></article>
+          </div>
+        </div>
+        <div class="method-stage" aria-label="Scroll-driven construction tower">
+          <div class="method-scene">
+            <div class="method-tower" id="methodTower"></div>
+            <div class="method-ground"></div>
+            <div class="method-shadow"></div>
+            <div class="method-crane"><i></i><b></b><em></em></div>
+            <span class="method-tag method-tag-top mono">SLAB L6 — ROOF</span>
+            <span class="method-tag method-tag-mid mono">COLUMN GRID C2</span>
+            <span class="method-tag method-tag-bottom mono">FOUNDATION OK</span>
+          </div>
+          <div class="method-card"><span class="dot pulse"></span><span><strong class="mono">BUILD SEQUENCE</strong><small class="mono">SCROLL TO RAISE THE STRUCTURE</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== NEWS & ANNOUNCEMENTS ====== -->
+    <section id="news" class="paper sec-pad">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <div>
+            <div class="kicker mono lbl">( 05 — NEWS &amp; ANNOUNCEMENTS )</div>
+            <h2 class="sec-title">
+              <span class="lm"><span>FIELD</span></span>
+              <span class="lm"><span style="--d:.1s">NOTES<span class="amber">.</span></span></span>
+            </h2>
+          </div>
+          <p class="sec-note">Dispatches from site offices, tenders won and the company bulletin.</p>
+        </div>
+
+        <div class="news-grid" id="newsGrid">
+          <article class="ncard rv"><div class="ph"><img src="https://picsum.photos/seed/bhoomi-township-contract-signing/640/420" alt="Township contract signing"></div>
+            <div class="in"><div class="top"><b>CONTRACT</b><span>SEP 12, 2026</span></div><h3>Bhoomi bags 12-acre township build contract</h3>
+            <p>A landmark EPC contract near Gaur — 340 residences, phase-one ground-breaking scheduled for November 2026.</p>
+            <div class="dispatch" id="dispatch-1" aria-hidden="true"><div class="dispatch-copy">The EPC agreement covers site development, infrastructure and construction of 340 homes across the first 12 acres. Mobilisation begins in October, with earthwork and boundary works scheduled ahead of the November ground-breaking.</div></div>
+            <button class="more" type="button" aria-expanded="false" aria-controls="dispatch-1">READ DISPATCH <i>→</i></button></div></article>
+
+          <article class="ncard rv" style="--d:.1s"><div class="ph"><img src="https://picsum.photos/seed/bhoomi-safety-week-crew/640/420" alt="Safety week on site"></div>
+            <div class="in"><div class="top"><b>COMPANY</b><span>AUG 28, 2026</span></div><h3>Safety Week 2026: 1.9M incident-free man-hours</h3>
+            <p>All nine active sites marked National Safety Week with drills, harness certification camps and a zero-harm pledge renewal.</p>
+            <div class="dispatch" id="dispatch-2" aria-hidden="true"><div class="dispatch-copy">Teams completed emergency-response drills, harness inspections and refreshed toolbox-talk materials across all active sites. The week closed with a renewed zero-harm pledge led by project managers and site safety officers.</div></div>
+            <button class="more" type="button" aria-expanded="false" aria-controls="dispatch-2">READ DISPATCH <i>→</i></button></div></article>
+
+          <article class="ncard rv" style="--d:.2s"><div class="ph"><img src="https://picsum.photos/seed/bhoomi-crane-fleet-yard/640/420" alt="New crane fleet"></div>
+            <div class="in"><div class="top"><b>FLEET</b><span>JUL 30, 2026</span></div><h3>Two new tower cranes join the fleet</h3>
+            <p>Our lifting capacity grows — 12-tonne luffing cranes deployed at Skyline Residency and Trade Park Block C.</p>
+            <div class="dispatch" id="dispatch-3" aria-hidden="true"><div class="dispatch-copy">The new 12-tonne luffing cranes have completed commissioning and operator familiarisation. One is now supporting the Level 14 pour cycle at Skyline Residency, while the second is serving the rising structure at Trade Park Block C.</div></div>
+            <button class="more" type="button" aria-expanded="false" aria-controls="dispatch-3">READ DISPATCH <i>→</i></button></div></article>
+        </div>
+
+        <div class="ann rv" id="annList">
+          <div class="ann-row"><span class="d">SEP 20, 2026</span><span class="t">SITE NOTICE</span><span>Trade Park site office walk-in interviews — site engineers &amp; safety officers.</span><button class="a" type="button" aria-expanded="false" aria-controls="ann-detail-1">HIRING ↗</button><div class="ann-detail" id="ann-detail-1" aria-hidden="true"><span>Walk-in interviews are open at the Trade Park site office for site engineers and safety officers. Bring an updated CV, qualification documents and experience details. Interviews run Sunday through Friday, 10:00–15:00 NPT.</span></div></div>
+          <div class="ann-row"><span class="d">SEP 08, 2026</span><span class="t">SCHEDULE</span><span>Monsoon pour-window update: Skyline Residency slab cycle shifted to night pours.</span><button class="a" type="button" aria-expanded="false" aria-controls="ann-detail-2">UPDATE ↗</button><div class="ann-detail" id="ann-detail-2" aria-hidden="true"><span>To protect concrete quality during the monsoon, Skyline Residency has moved its slab pours to cooler night windows. Residents and nearby traffic will receive advance notices whenever a pour is scheduled.</span></div></div>
+          <div class="ann-row"><span class="d">AUG 15, 2026</span><span class="t">REALTY</span><span>Verdant Villas Phase-II pre-launch open site visits now booking on weekends.</span><button class="a" type="button" aria-expanded="false" aria-controls="ann-detail-3">VISITS ↗</button><div class="ann-detail" id="ann-detail-3" aria-hidden="true"><span>Weekend site visits for Verdant Villas Phase-II can now be booked with the realty desk. Visitors can review the layout, available plots, road access and utility plans before the official launch.</span></div></div>
+          <div class="ann-row"><span class="d">JUL 22, 2026</span><span class="t">BULLETIN</span><span>Q2 client progress reports dispatched for all active residential projects.</span><button class="a" type="button" aria-expanded="false" aria-controls="ann-detail-4">REPORT ↗</button><div class="ann-detail" id="ann-detail-4" aria-hidden="true"><span>Q2 reports include construction progress, milestone status, cost tracking and upcoming work for every active residential project. Clients can request a project-specific copy from their project coordinator.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SITE GALLERY ====== -->
+    <section id="gallery" class="sec-pad dark-strip">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <div>
+            <div class="kicker mono">( 06 — SITE GALLERY )</div>
+            <h2 class="sec-title">
+              <span class="lm"><span>FROM THE</span></span>
+              <span class="lm"><span style="--d:.1s">FIELD<span class="amber">.</span></span></span>
+            </h2>
+          </div>
+          <p class="sec-note">Site photography from active projects — cranes, pours, piers and handovers across Madhesh.</p>
+        </div>
+
+        <div class="gal" id="galGrid">
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-crane-yard/700/920"><img src="https://picsum.photos/seed/bhoomi-field-crane-yard/700/920" alt="Crane yard at dawn"><figcaption><b>01</b>CRANE YARD — 06:40 NPT</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-excavation-work/700/520"><img src="https://picsum.photos/seed/bhoomi-field-excavation-work/700/520" alt="Excavation work on plot 12"><figcaption><b>02</b>EXCAVATION — PLOT 12</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-rebar-grid/700/760"><img src="https://picsum.photos/seed/bhoomi-field-rebar-grid/700/760" alt="Rebar grid at level 03"><figcaption><b>03</b>REBAR GRID — LEVEL 03</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-concrete-pump/700/900"><img src="https://picsum.photos/seed/bhoomi-field-concrete-pump/700/900" alt="Concrete pump during pour 212"><figcaption><b>04</b>POUR #212 — LEVEL 14</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-site-office/700/500"><img src="https://picsum.photos/seed/bhoomi-field-site-office/700/500" alt="Site office daily standup"><figcaption><b>05</b>SITE OFFICE — DAILY STANDUP</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-facade-finishing/700/880"><img src="https://picsum.photos/seed/bhoomi-field-facade-finishing/700/880" alt="Facade finishing on tower B"><figcaption><b>06</b>FACADE FINISHING — TOWER B</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-road-corridor/700/520"><img src="https://picsum.photos/seed/bhoomi-field-road-corridor/700/520" alt="NH-64 pier 18"><figcaption><b>07</b>NH-64 — PIER 18</figcaption></figure>
+          <figure class="g-item" data-full="https://picsum.photos/seed/bhoomi-field-interior-fitout/700/780"><img src="https://picsum.photos/seed/bhoomi-field-interior-fitout/700/780" alt="Interior fit-out unit 07"><figcaption><b>08</b>FIT-OUT — UNIT 07</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TESTIMONIALS ====== -->
+    <section class="sec-pad dark-strip">
+      <div class="wrap t-grid">
+        <div class="t-left rv">
+          <div class="kicker mono">( 07 — CLIENT WORD )</div>
+          <h2 class="sec-title">
+            <span class="lm"><span>SIGNED</span></span>
+            <span class="lm"><span style="--d:.1s">OFF<span class="amber">.</span></span></span>
+          </h2>
+          <div class="t-ctrl">
+            <button id="tPrev" aria-label="Previous testimonial">←</button>
+            <button id="tNext" aria-label="Next testimonial">→</button>
+          </div>
+          <div class="t-dots" id="tDots"></div>
+        </div>
+
+        <div class="t-stage rv" id="tStage">
+          <div class="t-slide active">
+            <p class="q">"Bhoomi handed us our tower <b>three weeks early</b> — and the weekly photo reports meant we never once had to ask what was happening on site."</p>
+            <div class="who"><img src="https://picsum.photos/seed/bhoomi-client-rmenon/120/120" alt="R. Menon"><div><b>R. Menon</b><span>DIRECTOR · SKYLINE HOMES LLP</span></div></div>
+          </div>
+          <div class="t-slide">
+            <p class="q">"Their NH-64 corridor passed every third-party quality audit <b>on the first pass</b>. That almost never happens with road packages of this size."</p>
+            <div class="who"><img src="https://picsum.photos/seed/bhoomi-client-engineer/120/120" alt="K. Rao"><div><b>Er. K. Rao</b><span>CHIEF ENGINEER · HIGHWAY AUTHORITY</span></div></div>
+          </div>
+          <div class="t-slide">
+            <p class="q">"We bought into Verdant Villas off plan. Every promise in the brochure — clubhouse, rain harvesting, the park — <b>was there on handover day</b>."</p>
+            <div class="who"><img src="https://picsum.photos/seed/bhoomi-client-family/120/120" alt="The Shetty family"><div><b>A. &amp; S. Shetty</b><span>VILLA OWNERS · VERDANT VILLAS</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- gallery lightbox (placed after TESTIMONIALS so the two adjacent
+         dark-strip sections keep a single hazard separator) -->
+    <div class="lb" id="lb" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site photography lightbox">
+      <button class="lb-x" type="button" aria-label="Close gallery">×</button>
+      <button class="lb-p" type="button" aria-label="Previous image">←</button>
+      <button class="lb-n" type="button" aria-label="Next image">→</button>
+      <figure>
+        <img id="lbImg" src="" alt="">
+        <figcaption id="lbCap"></figcaption>
+      </figure>
+    </div>
+
+    <!-- ====== CONTACT ====== -->
+    <section id="contact" class="paper sec-pad">
+      <div class="wrap">
+        <div class="sec-head rv">
+          <div>
+            <div class="kicker mono lbl">( 08 — START A PROJECT )</div>
+            <h2 class="sec-title">
+              <span class="lm"><span>LET'S BREAK</span></span>
+              <span class="lm"><span style="--d:.1s">GROUND<span class="amber">.</span></span></span>
+            </h2>
+          </div>
+          <p class="sec-note">Tell us about the plot, the plan or the problem. Our estimation desk replies within one working day.</p>
+        </div>
+
+        <div class="c-grid">
+          <div class="rv">
+            <form id="inqForm" novalidate>
+              <!-- honeypot: invisible to humans, bots that fill it are silently dropped -->
+              <input type="text" id="fcompany" name="company" tabindex="-1" autocomplete="off" aria-hidden="true"
+                     style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
+              <div class="f-row">
+                <div class="field"><input type="text" id="fname" placeholder=" " maxlength="120" required><label for="fname">Full Name *</label></div>
+                <div class="field"><input type="tel" id="fphone" placeholder=" " maxlength="40" required><label for="fphone">Phone *</label></div>
+              </div>
+              <div class="f-row">
+                <div class="field"><input type="email" id="femail" placeholder=" " maxlength="160" required><label for="femail">Email *</label></div>
+                <div class="field">
+                  <select id="ftype" required>
+                    <option value="" selected disabled>Select project type…</option>
+                    <option>Civil Construction</option><option>Infrastructure</option>
+                    <option>Real Estate / Plot / Villa</option><option>Interiors &amp; Renovation</option>
+                    <option>PMC / Consulting</option><option>Design &amp; Approvals</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <select id="fbudget">
+                  <option value="" selected disabled>Approximate budget (optional)…</option>
+                  <option>Under NPR 25 Lakh</option><option>NPR 25 Lakh – 1 Crore</option>
+                  <option>NPR 1 – 10 Crore</option><option>Above NPR 10 Crore</option>
+                </select>
+              </div>
+              <div class="field"><textarea id="fmsg" rows="4" placeholder=" " maxlength="4000" required></textarea><label for="fmsg">Project Details — site location, scope, timeline *</label></div>
+              <button type="submit" class="btn solid magnetic">Send Inquiry <span class="arr">→</span></button>
+              <p class="mono" style="margin-top:16px;color:var(--mut-p)">REF: INQ-<span id="refNo">2026-0000</span> · YOUR DETAILS STAY ON OUR DESK, NOT IN THE MARKET.</p>
+            </form>
+            <div class="form-ok" id="formOk">
+              <div class="tick">✓</div>
+              <h3 class="disp" style="font-size:1.8rem;margin-bottom:10px">INQUIRY RECEIVED.</h3>
+              <p style="color:var(--mut-p)">Our estimation desk will call you within one working day. Ref: <b id="okRef">—</b></p>
+            </div>
+          </div>
+
+          <div class="c-info rv" style="--d:.15s">
+            <div><b>SITE OFFICE</b><p>Bhoomi Infratech Pvt. Ltd.<br>Gaur-5, Rautahat,<br>Madhesh Pradesh, Nepal</p></div>
+            <div><b>CALL</b><p><a href="tel:+9779818624020">+977 9818624020</a><br>Sun–Fri · 09:00–17:00 NPT</p></div>
+            <div><b>EMAIL</b><p><a href="mailto:bhoomiinfratech123@gmail.com">bhoomiinfratech123@gmail.com</a></p></div>
+            <div><b>FIELD</b><p>Active sites across Madhesh Province.<br>Site visits by appointment.</p></div>
+          </div>
+        </div>
+
+        <div class="map rv">
+          <span class="pin">◉ HQ — GAUR-5, RAUTAHAT, MADHESH PRADESH, NEPAL</span>
+          <div class="map-brand" aria-label="Bhoomi Infractech headquarters">
+            <strong>BHOOMI</strong>
+            <span>INFRACTECH</span>
+          </div>
+          <a class="map-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=26.765302070892798%2C85.28065717873261" target="_blank" rel="noopener noreferrer">GET DIRECTIONS <span>↗</span></a>
+          <div id="siteMap" class="site-map" aria-label="Bhoomi Infractech location map"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="hazard" aria-hidden="true"></div>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <div class="wrap">
+      <div class="f-big"><h2>BHOOMI</h2></div>
+      <div class="f-cols">
+        <div>
+          <h4>THE COMPANY</h4>
+          <p>Bhoomi Infratech builds the roads, towers, parks and homes communities are made of. Construction · Infrastructure · Real Estate since 2016.</p>
+        </div>
+        <div>
+          <h4>SITEMAP</h4>
+          <a href="#about">Company Profile</a><a href="#services">Services</a><a href="#projects">Project Portfolio</a>
+          <a href="#method">Method</a><a href="#news">News &amp; Notices</a><a href="#contact">Contact &amp; Inquiry</a>
+        </div>
+        <div>
+          <h4>SERVICES</h4>
+          <a href="#services">Civil Construction</a><a href="#services">Infrastructure</a><a href="#services">Real Estate</a>
+          <a href="#services">Interiors</a><a href="#services">PMC</a><a href="#services">Design</a>
+        </div>
+        <div>
+          <h4>REACH US</h4>
+          <p>Gaur-5, Rautahat, Madhesh Pradesh, Nepal</p>
+          <a href="tel:+9779818624020">+977 9818624020</a>
+          <a href="mailto:bhoomiinfratech123@gmail.com">bhoomiinfratech123@gmail.com</a>
+          <a href="#top">Instagram ↗</a><a href="#top">LinkedIn ↗</a>
+        </div>
+      </div>
+      <div class="f-bot">
+        <span>© 2026 BHOOMI INFRATECH PVT. LTD. — ALL RIGHTS RESERVED</span>
+        <span>CLASS “A” · QUALITY CONTROL · SAFETY-FIRST SITES</span>
+        <a href="admin/" class="admin-link" title="Admin console" aria-label="Admin console">ADMIN</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="totop" id="toTop" aria-label="Back to top">↑</button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/cms.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

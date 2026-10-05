@@ -127,11 +127,6 @@ python -m http.server 8080
 # admin console → http://localhost:8080/admin/
 ```
 
-To wire your own backend: run `supabase/setup.sql` in a fresh Supabase
-project's SQL editor, drop your Project URL + anon key into `config.js`, and
-create your admin account at `/admin/`. Full walk-through in
-[`README-ADMIN.md`](README-ADMIN.md).
-
 ## Deployment (Netlify)
 
 The repo is deploy-ready: connect it on Netlify with **no build command** and

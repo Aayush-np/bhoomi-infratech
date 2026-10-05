@@ -709,6 +709,11 @@ const InquiryForm = {
 
   init(){
     document.getElementById('refNo').textContent = '2026-' + this.rand4();
+    /* phone: digits only (letters/punctuation are stripped as you type) */
+    const phoneInp = document.getElementById('fphone');
+    phoneInp.addEventListener('input', () => {
+      phoneInp.value = phoneInp.value.replace(/\D/g, '').slice(0, 15);
+    });
     this.form.addEventListener('submit', async e => {
       e.preventDefault();
       if (!this.form.checkValidity()) { this.form.reportValidity(); return; }
@@ -736,7 +741,7 @@ const InquiryForm = {
       const data = {
         ref,
         name: val('fname'),
-        phone: val('fphone'),
+        phone: val('fcode') + ' ' + val('fphone').replace(/\s+/g, ''),
         email: val('femail'),
         project_type: val('ftype'),
         budget: val('fbudget'),

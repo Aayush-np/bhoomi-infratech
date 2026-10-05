@@ -307,6 +307,19 @@
       $('authNote').textContent = 'BACKEND NOT CONFIGURED — SEE THE SETUP PANEL FOR THE FOUR-STEP WIRING.';
     },
 
+    realtime: null,
+    startRealtime() {
+      if (this.realtime) return;               // subscribe once per session
+      this.realtime = Api.subscribe(['inquiries', 'projects'], (table, payload) => {
+        refreshCounts();
+        if (currentKey === 'inquiries') V.inquiries.load();   // re-paints, keeps search/filters
+        else if (currentKey === '') navigate();               // dashboard chart + latest list
+        if (payload && payload.eventType === 'INSERT') {
+          UI.toast(table === 'inquiries' ? 'New inquiry just landed — list updated.' : 'New record added — view updated.');
+        }
+      });
+    },
+
     async enterApp() {
       dropSplash();
       $('adminAuth').hidden = true;
@@ -316,6 +329,7 @@
       if (!location.hash || location.hash === '#') history.replaceState(null, '', '#/');
       await navigate();
       refreshCounts();
+      this.startRealtime();
     },
 
     refreshCounts,

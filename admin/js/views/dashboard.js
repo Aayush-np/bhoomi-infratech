@@ -131,7 +131,7 @@
               '<td class="mono ref-c">' + UI.e(r.ref || '—') + '</td>' +
               '<td><b class="cell-t">' + UI.e(r.name) + '</b><span class="mono cell-sub">' + UI.e(r.phone || r.email || '—') + '</span></td>' +
               '<td class="cell-scope">' + UI.e(r.project_type || '—') + '</td>' +
-              '<td class="mono">' + UI.timeAgo(r.created_at) + '</td>' +
+              '<td class="mono">' + UI.fmtDateTime(r.created_at) + '</td>' +
               '<td><span class="chip ' + (r.status === 'new' ? '' : r.status === 'contacted' ? 'done' : 'ghost') + '">' +
               { new: 'NEW', contacted: 'CONTACTED', closed: 'CLOSED' }[r.status] + '</span></td>' +
               '</tr>'

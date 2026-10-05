@@ -109,9 +109,12 @@
     return { close: close, el: ov, body: body, foot: foot };
   }
 
-  /* ---------- confirm dialog ---------- */
+  /* ---------- confirm dialog ----------
+     NB: resolve BEFORE close; the modal's onClose "cancel" fallback only
+     fires when no button was pressed (Esc / overlay click / X). */
   function confirm(opts) {
     return new Promise(function (resolve) {
+      var answered = false;
       var m = modal({
         kicker: opts.kicker || 'CONFIRMATION',
         title: opts.title || 'CONFIRM ACTION',
@@ -119,21 +122,15 @@
         footer:
           '<button class="btn ghost" data-r="0" type="button">Cancel</button>' +
           '<button class="btn solid danger" data-r="1" type="button">' + icon('trash', 14) + ' ' + e(opts.label || 'Delete') + '</button>',
-        onClose: function () { resolve(false); }
+        onClose: function () { if (!answered) resolve(false); }
       });
-      var answered = false;
       m.foot.querySelectorAll('button').forEach(function (b) {
         b.addEventListener('click', function () {
           answered = true;
-          m.close();
           resolve(b.dataset.r === '1');
+          m.close();
         });
       });
-      /* prevent double-resolve via overlay click + cancel */
-      var origClose = m.close;
-      m.close = function () {
-        if (answered) { origClose(); } else { answered = true; resolve(false); origClose(); }
-      };
     });
   }
 
@@ -202,6 +199,16 @@
     if (isNaN(dt)) return '';
     return pad2(dt.getHours()) + ':' + pad2(dt.getMinutes());
   }
+  /* exact stamp, e.g. "07 OCT 2026 · 07:00 PM" */
+  function fmtDateTime(d) {
+    var dt = d instanceof Date ? d : new Date(d);
+    if (isNaN(dt)) return e(d);
+    var h = dt.getHours();
+    var ampm = h >= 12 ? 'PM' : 'AM';
+    var h12 = h % 12 || 12;
+    return pad2(dt.getDate()) + ' ' + MONTHS[dt.getMonth()] + ' ' + dt.getFullYear() +
+      ' · ' + pad2(h12) + ':' + pad2(dt.getMinutes()) + ' ' + ampm;
+  }
   function timeAgo(d) {
     var dt = d instanceof Date ? d : new Date(d);
     if (isNaN(dt)) return '';
@@ -235,7 +242,7 @@
   window.AdminUI = {
     e: e, icon: icon, toast: toast, modal: modal, confirm: confirm,
     empty: empty, skel: skel, errorState: errorState, setBusy: setBusy,
-    fmtDate: fmtDate, fmtTime: fmtTime, timeAgo: timeAgo,
+    fmtDate: fmtDate, fmtTime: fmtTime, fmtDateTime: fmtDateTime, timeAgo: timeAgo,
     fileOk: fileOk, dataUrl: dataUrl
   };
 })();

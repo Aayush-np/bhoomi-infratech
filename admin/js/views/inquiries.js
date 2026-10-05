@@ -117,7 +117,7 @@
           '<td><b class="cell-t">' + UI.e(r.name) + '</b><span class="mono cell-sub">' + UI.e(r.email || 'no email') + ' · ' + UI.e(r.phone || 'no phone') + '</span></td>' +
           '<td class="cell-scope">' + UI.e(r.project_type || '—') + '</td>' +
           '<td class="mono">' + UI.e(r.budget || '—') + '</td>' +
-          '<td class="mono" title="' + UI.e(new Date(r.created_at).toLocaleString()) + '">' + UI.timeAgo(r.created_at) + '</td>' +
+          '<td class="mono" title="' + UI.e(new Date(r.created_at).toLocaleString()) + '">' + UI.fmtDateTime(r.created_at) + '</td>' +
           '<td><select class="sel status-sel" data-action="status" data-id="' + r.id + '" aria-label="Status of ' + UI.e(r.name) + '">' +
           STATUSES.map(s => '<option value="' + s + '"' + (r.status === s ? ' selected' : '') + '>' + ST_LABEL[s] + '</option>').join('') +
           '</select></td>' +
@@ -164,7 +164,7 @@
           '<div><span class="mono">EMAIL</span><b>' + UI.e(r.email || '—') + '</b></div>' +
           '<div><span class="mono">PROJECT TYPE</span><b>' + UI.e(r.project_type || '—') + '</b></div>' +
           '<div><span class="mono">BUDGET</span><b>' + UI.e(r.budget || '—') + '</b></div>' +
-          '<div><span class="mono">RECEIVED</span><b>' + UI.fmtDate(d) + ' · ' + UI.fmtTime(d) + ' NPT</b></div>' +
+          '<div><span class="mono">RECEIVED</span><b>' + UI.fmtDateTime(d) + '</b></div>' +
           '</div>' +
           '<div class="inq-msg"><span class="mono">PROJECT DETAILS</span><p>' + UI.e(r.message) + '</p></div>' +
           '</div>',

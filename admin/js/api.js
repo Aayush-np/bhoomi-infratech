@@ -52,6 +52,20 @@
       if (!client) return { unsubscribe: function () {} };
       return client.auth.onAuthStateChange(function (ev, s) { cb(s); });
     },
+    /* ---------- realtime ---------- */
+    /* Fires cb() on every INSERT/UPDATE/DELETE of any watched table.
+       Requires: alter publication supabase_realtime add table <name>;  */
+    subscribe(tables, cb){
+      if (!client) return null;
+      var ch = client.channel('admin-realtime');
+      tables.forEach(function (t) {
+        ch = ch.on('postgres_changes',
+          { event: '*', schema: 'public', table: t },
+          function (payload) { cb(t, payload); });
+      });
+      ch.subscribe();
+      return function () { client.removeChannel(ch); };
+    },
     async ensureAdmin(){
       var session = await this.session();
       var email = session && session.user && session.user.email;

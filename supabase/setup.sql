@@ -270,6 +270,24 @@ create policy "public insert inquiries" on public.inquiries
 
 
 -- ============================================================================
+-- 6b. REALTIME — lets the admin console auto-refresh when visitors submit
+--     inquiries (no manual page refresh). Events still respect RLS: only
+--     authenticated admins receive them.
+-- ============================================================================
+do $$
+begin
+  alter publication supabase_realtime add table public.inquiries;
+exception when duplicate_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public.projects;
+exception when duplicate_object then null;
+end $$;
+
+
+-- ============================================================================
 -- 7. STORAGE — public bucket "media" for uploaded images
 -- ============================================================================
 insert into storage.buckets (id, name, public)

@@ -559,7 +559,25 @@
                      style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
               <div class="f-row">
                 <div class="field"><input type="text" id="fname" placeholder=" " maxlength="120" required><label for="fname">Full Name *</label></div>
-                <div class="field"><input type="tel" id="fphone" placeholder=" " maxlength="40" required><label for="fphone">Phone *</label></div>
+                <div class="field phone-field">
+                  <select id="fcode" class="phone-code" aria-label="Country code" title="Country code">
+                    <option value="+977" selected>🇳🇵 +977 (NP)</option>
+                    <option value="+91">🇮🇳 +91 (IN)</option>
+                    <option value="+1">🇺🇸 +1 (US/CA)</option>
+                    <option value="+44">🇬🇧 +44 (UK)</option>
+                    <option value="+61">🇦🇺 +61 (AU)</option>
+                    <option value="+971">🇦🇪 +971 (AE)</option>
+                    <option value="+65">🇸🇬 +65 (SG)</option>
+                    <option value="+86">🇨🇳 +86 (CN)</option>
+                    <option value="+81">🇯🇵 +81 (JP)</option>
+                    <option value="+82">🇰🇷 +82 (KR)</option>
+                    <option value="+49">🇩🇪 +49 (DE)</option>
+                    <option value="+33">🇫🇷 +33 (FR)</option>
+                  </select>
+                  <input type="tel" id="fphone" placeholder=" " inputmode="numeric" pattern="[0-9]{7,15}" maxlength="15"
+                         autocomplete="tel-national" title="Enter your phone number — digits only, 7 to 15 digits" required>
+                  <label for="fphone">Phone (10 digits) *</label>
+                </div>
               </div>
               <div class="f-row">
                 <div class="field"><input type="email" id="femail" placeholder=" " maxlength="160" required><label for="femail">Email *</label></div>

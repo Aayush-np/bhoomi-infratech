@@ -92,7 +92,7 @@ Visitor                     Admin                        Supabase
 │   └── css|js/           # ui kit, api layer, forms, hash router, views/*
 ├── supabase/setup.sql    # Schema + RLS + storage bucket + seed data (run once)
 ├── img/                  # Static assets
-└── README-ADMIN.md       # Admin console deep-dive (setup, workflows)
+└── 404.html              # Branded 404 + internal-file mask target
 ```
 
 ## Security

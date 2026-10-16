@@ -127,12 +127,6 @@ python -m http.server 8080
 # admin console → http://localhost:8080/admin/
 ```
 
-## Deployment (Netlify)
-
-The repo is deploy-ready: connect it on Netlify with **no build command** and
-the root as the publish directory. `_headers` and `_redirects` are applied
-automatically.
-
 ## Author
 
 **Aayush Jaiswal**

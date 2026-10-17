@@ -3,9 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bhoomi Infratech — construction, infrastructure and real estate company headquartered in Gaur-5, Rautahat, Madhesh Pradesh, Nepal.">
-  <title>Bhoomi Infratech — Gaur-5, Rautahat, Madhesh Pradesh, Nepal</title>
+
+  <title>Bhoomi Infratech — Roads, Towers & Townships Across Nepal</title>
+  <meta name="description" content="From high-rise towers to highways — Bhoomi Infratech plans, builds and delivers construction, infrastructure and real-estate projects across Nepal. On time, on budget, above spec.">
+  <link rel="canonical" href="https://bhoomiinfratech.netlify.app/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="author" content="Bhoomi Infratech Pvt. Ltd.">
+  <meta name="theme-color" content="#101010">
+
+  <!-- Icons -->
   <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
+
+  <!-- LCP: hero photo starts loading before CSS/JS parse -->
+  <link rel="preload" as="image" href="https://picsum.photos/seed/bhoomi-construction-crane-site/900/1100" fetchpriority="high">
+
+  <!-- Social / chat-app link previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bhoomi Infratech">
+  <meta property="og:title" content="Bhoomi Infratech — Roads, Towers & Townships Across Nepal">
+  <meta property="og:description" content="High-rise towers to highways — construction, infrastructure and real estate delivered on time, on budget, above spec.">
+  <meta property="og:url" content="https://bhoomiinfratech.netlify.app/">
+  <meta property="og:image" content="https://picsum.photos/seed/bhoomi-construction-crane-site/1200/630">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Tower crane rising over a Bhoomi Infratech construction site at dawn">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bhoomi Infratech — Roads, Towers & Townships Across Nepal">
+  <meta name="twitter:description" content="High-rise towers to highways — construction, infrastructure and real estate delivered on time, on budget, above spec.">
+  <meta name="twitter:image" content="https://picsum.photos/seed/bhoomi-construction-crane-site/1200/630">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +42,51 @@
   <!-- Styles -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Structured data: business identity + site graph -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "GeneralContractor",
+        "@id": "https://bhoomiinfratech.netlify.app/#org",
+        "name": "Bhoomi Infratech Pvt. Ltd.",
+        "url": "https://bhoomiinfratech.netlify.app/",
+        "logo": "https://bhoomiinfratech.netlify.app/img/logo.png",
+        "image": "https://picsum.photos/seed/bhoomi-construction-crane-site/1200/630",
+        "description": "Civil construction, infrastructure development and real-estate company headquartered in Gaur, Rautahat, Nepal.",
+        "telephone": "+9779818624020",
+        "email": "bhoomiinfratech123@gmail.com",
+        "priceRange": "₨₨",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Gaur-5",
+          "addressLocality": "Gaur",
+          "addressRegion": "Madhesh Province",
+          "addressCountry": "NP"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": 26.7653020708928, "longitude": 85.2806571787326 },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        "areaServed": { "@type": "Country", "name": "Nepal" },
+        "knowsAbout": ["Civil construction", "Infrastructure development", "Real-estate development", "Project management consultancy", "Structural design"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bhoomiinfratech.netlify.app/#site",
+        "url": "https://bhoomiinfratech.netlify.app/",
+        "name": "Bhoomi Infratech",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://bhoomiinfratech.netlify.app/#org" }
+      }
+    ]
+  }
+  </script>
 
   <!-- CMS configuration + Supabase (optional backend — site degrades gracefully without it) -->
   <script src="config.js"></script>
@@ -609,7 +681,7 @@
           </div>
 
           <div class="c-info rv" style="--d:.15s">
-            <div><b>SITE OFFICE</b><p>Bhoomi Infratech Pvt. Ltd.<br>Gaur-5, Rautahat,<br>Madhesh Pradesh, Nepal</p></div>
+            <div><b>SITE OFFICE</b><address><p>Bhoomi Infratech Pvt. Ltd.<br>Gaur-5, Rautahat,<br>Madhesh Pradesh, Nepal</p></address></div>
             <div><b>CALL</b><p><a href="tel:+9779818624020">+977 9818624020</a><br>Sun–Fri · 09:00–17:00 NPT</p></div>
             <div><b>EMAIL</b><p><a href="mailto:bhoomiinfratech123@gmail.com">bhoomiinfratech123@gmail.com</a></p></div>
             <div><b>FIELD</b><p>Active sites across Madhesh Province.<br>Site visits by appointment.</p></div>

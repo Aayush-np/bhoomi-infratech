@@ -457,6 +457,7 @@ section{position:relative}
 .c-info>div{border-top:1px solid var(--line-p);padding:22px 0;display:grid;grid-template-columns:130px 1fr;gap:16px}
 .c-info b{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--amber-d);font-weight:400;padding-top:4px}
 .c-info p{font-size:.98rem}
+.c-info address{font-style:normal}
 .c-info a{border-bottom:1px solid transparent;transition:.3s}
 .c-info a:hover{border-color:var(--amber-d);color:var(--amber-d)}
 .map{margin-top:clamp(60px,8vh,90px);border:1px solid var(--line-p);position:relative;overflow:hidden}
